@@ -2,7 +2,7 @@ public class Book {
     private int id;
     private String title;
     private String author;
-    private String status;
+    private boolean status;
 
     public Book(int id,String title,String author){
         this.id=id;
@@ -35,11 +35,11 @@ public class Book {
         this.author=author;
     }
 
-    public String getStatus(){
+    public boolean getStatus(){
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(boolean status){
         this.status=status;
     }
 

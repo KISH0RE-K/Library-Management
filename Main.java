@@ -6,5 +6,12 @@ public class Main {
 
         library.addBook(book1);
         library.addBook(book2);
+
+        Book result=library.searchBook(1);
+        if(result!=null){
+            System.out.println(result.getTitle());
+        }else{
+            System.out.println("No book");
+        }
     }
 }
