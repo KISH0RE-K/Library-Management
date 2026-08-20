@@ -1,9 +1,9 @@
 public class Member {
     private int id;
     private String name;
-    private int phone;
+    private String phone;
 
-    public Member(int id,String name,int phone){
+    public Member(int id,String name,String phone){
         this.id=id;
         this.name=name;
         this.phone=phone;
@@ -25,11 +25,11 @@ public class Member {
         this.name=name;
     }
 
-    public int getPhone(){
+    public String getPhone(){
         return phone;
     }
 
-    public void setPhone(int phone){
+    public void setPhone(String phone){
         this.phone=phone;
     }
 }
