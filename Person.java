@@ -1,4 +1,4 @@
-public class Person {
+public abstract class Person {
     private int id;
     private String name;
     private String phone;
@@ -32,4 +32,6 @@ public class Person {
     public void setPhone(String phone){
         this.phone=phone;
     }
+
+    public abstract void displayRole();
 }
