@@ -43,6 +43,4 @@ public class Book {
         this.status=status;
     }
 
-
-
 }
