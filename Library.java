@@ -1,9 +1,10 @@
 import java.util.*;
 
-public class Library{
+public class Library implements LibraryOperations{
     private ArrayList<Book> books=new ArrayList<>();
     private ArrayList<Member> members=new ArrayList<>();
 
+    @Override
     public void addBook(Book book){
         if(searchBook(book.getId())!=null){
             System.out.println("Book with id already exists");
@@ -12,6 +13,7 @@ public class Library{
         books.add(book);
     }
 
+    @Override
     public void viewBooks(){
         for(Book book:books){
             System.out.println(book.getId());
@@ -20,6 +22,7 @@ public class Library{
         }
     }
 
+    @Override
     public Book searchBook(int id){
         for(Book book:books){
             if(book.getId()==id){
@@ -29,6 +32,7 @@ public class Library{
         return null;
     }
 
+    @Override
     public void addMember(Member member){
         if(searchMember(member.getId())!=null){
             System.out.println("member with id already exists");
@@ -37,6 +41,7 @@ public class Library{
         members.add(member);
     }
 
+    @Override
     public void viewMembers(){
         for(Member member:members){
             System.out.println(member.getId());
@@ -45,6 +50,7 @@ public class Library{
         }
     }
 
+    @Override
     public Member searchMember(int id){
         for(Member member:members){
             if(member.getId()==id){
@@ -54,6 +60,7 @@ public class Library{
         return null;    
     }
 
+    @Override
     public void borrowBook(int memberId,int bookId){
         Member member=searchMember(memberId);
         Book book=searchBook(bookId);
@@ -72,6 +79,7 @@ public class Library{
         }
     }
 
+    @Override
     public void returnBook(int memberId,int bookId){
         Member member=searchMember(memberId);
         Book book=searchBook(bookId);
