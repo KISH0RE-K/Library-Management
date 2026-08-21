@@ -5,6 +5,10 @@ public class Library{
     private ArrayList<Member> members=new ArrayList<>();
 
     public void addBook(Book book){
+        if(searchBook(book.getId())!=null){
+            System.out.println("Book with id already exists");
+            return;
+        }
         books.add(book);
     }
 
@@ -26,6 +30,10 @@ public class Library{
     }
 
     public void addMember(Member member){
+        if(searchMember(member.getId())!=null){
+            System.out.println("member with id already exists");
+            return;
+        }
         members.add(member);
     }
 
@@ -77,8 +85,8 @@ public class Library{
             System.out.println("Book already available");
             return;
         }else{
-            System.out.println("Book returned Successfully");
             book.setStatus(true);
+            System.out.println("Book returned Successfully");  
         }
     }
 }
