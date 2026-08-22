@@ -29,4 +29,8 @@ public class Member extends Person {
             System.out.println(book.getAuthor());
         }
     }
+
+    public String toString(){
+        return "ID: "+getId()+", Name: "+getName()+", Phone: "+getPhone();
+    }
 }
