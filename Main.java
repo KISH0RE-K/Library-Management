@@ -64,13 +64,14 @@ public class Main {
                 case 6:
                     System.out.println("enter member id:");
                     int id4=sc.nextInt();
-                    Member member=library.searchMember(id4);
-                    if(member!=null){
+                    try{
+                        Member member=library.searchMember(id4);
+                    
                         System.out.println("id:"+member.getId());
                         System.out.println("Name:"+member.getName());
                         System.out.println("phone"+member.getPhone());
-                    }else{
-                        System.out.println("No member Found");
+                    }catch(MemberNotFoundException e){
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 7:

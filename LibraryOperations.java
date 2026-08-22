@@ -9,7 +9,7 @@ public interface LibraryOperations {
 
     public void viewMembers();
 
-    public Member searchMember(int id);
+    public Member searchMember(int id) throws MemberNotFoundException;
 
     public void borrowBook(int memberId,int bookId);
 

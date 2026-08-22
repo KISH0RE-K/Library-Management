@@ -6,11 +6,13 @@ public class Library implements LibraryOperations{
 
     @Override
     public void addBook(Book book){
-        if(searchBook(book.getId())!=null){
+        try{
+            searchBook(book.getId());
             System.out.println("Book with id already exists");
-            return;
+        }catch(BookNotFoundException e){
+            books.add(book);
+            System.out.println("Book added successfully");
         }
-        books.add(book);
     }
 
     @Override
@@ -34,11 +36,13 @@ public class Library implements LibraryOperations{
 
     @Override
     public void addMember(Member member){
-        if(searchMember(member.getId())!=null){
-            System.out.println("member with id already exists");
-            return;
+        try{
+            searchMember(member.getId());
+            System.out.println("Member already exists");
+        }catch(MemberNotFoundException e){
+            members.add(member);
+            System.out.println("Member successfully added");
         }
-        members.add(member);
     }
 
     @Override
@@ -51,13 +55,13 @@ public class Library implements LibraryOperations{
     }
 
     @Override
-    public Member searchMember(int id){
+    public Member searchMember(int id) throws MemberNotFoundException{
         for(Member member:members){
             if(member.getId()==id){
                 return member;
             }
         }
-        return null;    
+        throw new MemberNotFoundException("No member found");   
     }
 
     @Override
@@ -76,6 +80,8 @@ public class Library implements LibraryOperations{
                 book.setStatus(false);
             }
         }catch(BookNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(MemberNotFoundException e){
             System.out.println(e.getMessage());
         }
     }
@@ -96,6 +102,8 @@ public class Library implements LibraryOperations{
                 System.out.println("Book returned Successfully");  
             }
         }catch(BookNotFoundException e){
+            System.out.println(e.getMessage());
+        }catch(MemberNotFoundException e){
             System.out.println(e.getMessage());
         }
     }
