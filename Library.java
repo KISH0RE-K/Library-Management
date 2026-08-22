@@ -23,13 +23,13 @@ public class Library implements LibraryOperations{
     }
 
     @Override
-    public Book searchBook(int id){
+    public Book searchBook (int id) throws BookNotFoundException{
         for(Book book:books){
             if(book.getId()==id){
                 return book;
             }
         }
-        return null;
+        throw new BookNotFoundException("Book Not Found");
     }
 
     @Override
@@ -62,39 +62,41 @@ public class Library implements LibraryOperations{
 
     @Override
     public void borrowBook(int memberId,int bookId){
-        Member member=searchMember(memberId);
-        Book book=searchBook(bookId);
-        if(member==null){
-            System.out.println("Member Not Found");
-            return;
-        }else if(book==null){
-            System.out.println("Book Not found");
-            return;
-        }else if(book.getStatus()==false){
-            System.out.println("Book not available");
-            return;
-        }else{
-            System.out.println("Book available");
-            book.setStatus(false);
+        try{
+            Book book=searchBook(bookId);
+            Member member=searchMember(memberId);
+            if(member==null){
+                System.out.println("Member Not Found");
+                return;
+            }else if(book.getStatus()==false){
+                System.out.println("Book not available");
+                return;
+            }else{
+                System.out.println("Book available");
+                book.setStatus(false);
+            }
+        }catch(BookNotFoundException e){
+            System.out.println(e.getMessage());
         }
     }
 
     @Override
-    public void returnBook(int memberId,int bookId){
-        Member member=searchMember(memberId);
-        Book book=searchBook(bookId);
-        if(member==null){
-            System.out.println("Member Not Found");
-            return;
-        }else if(book==null){
-            System.out.println("Book Not found");
-            return;
-        }else if(book.getStatus()==true){
-            System.out.println("Book already available");
-            return;
-        }else{
-            book.setStatus(true);
-            System.out.println("Book returned Successfully");  
+    public void returnBook(int memberId,int bookId){    
+        try{
+            Book book=searchBook(bookId);
+            Member member=searchMember(memberId);
+            if(member==null){
+                System.out.println("Member Not Found");
+                return;
+            }else if(book.getStatus()==true){
+                System.out.println("Book already available");
+                return;
+            }else{
+                book.setStatus(true);
+                System.out.println("Book returned Successfully");  
+            }
+        }catch(BookNotFoundException e){
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -3,7 +3,7 @@ public interface LibraryOperations {
 
     public void viewBooks();
 
-    public Book searchBook(int id);
+    public Book searchBook(int id) throws BookNotFoundException;
 
     public void addMember(Member member);
 

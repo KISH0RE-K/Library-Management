@@ -37,13 +37,15 @@ public class Main {
                 case 3:
                     System.out.println("enter book id");
                     int id2=sc.nextInt();
-                    Book book=library.searchBook(id2);
-                    if(book!=null){
-                        System.out.println("Id:"+book.getId());
-                        System.out.println("Title:"+book.getTitle());
-                        System.out.println("Author:"+book.getAuthor());
-                    } else{
-                        System.out.println("no book found");
+                    try {
+                        Book book = library.searchBook(id2);
+
+                        System.out.println("Id: " + book.getId());
+                        System.out.println("Title: " + book.getTitle());
+                        System.out.println("Author: " + book.getAuthor());
+
+                    } catch (BookNotFoundException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case 4:
