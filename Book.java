@@ -43,4 +43,7 @@ public class Book {
         this.status=status;
     }
 
+    public String toString(){
+        return "ID: "+id+", Title"+title+", Author"+author;
+    } 
 }

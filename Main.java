@@ -15,7 +15,8 @@ public class Main {
             System.out.println("6. Search Member");
             System.out.println("7. Borrow Book");
             System.out.println("8. Return Book");
-            System.out.println("9. Exit");
+            System.out.println("9. View Member's Borrowed Books");
+            System.out.println("10. Exit");
 
             System.out.print("Enter your choice: ");
             int choice = sc.nextInt();
@@ -89,6 +90,17 @@ public class Main {
                     library.returnBook(id8, id7);
                     break;
                 case 9:
+                    System.out.println("Enter member id:");
+                    int id9=sc.nextInt();
+                    try{
+                        Member member=library.searchMember(id9);
+                        member.viewBorrowedBooks();
+
+                    }catch(MemberNotFoundException e){
+                        System.out.println(e.getMessage());
+                    }
+                    break;
+                case 10:
                     System.out.println("Exiting...");
                     sc.close();
                     return;

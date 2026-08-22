@@ -69,41 +69,31 @@ public class Library implements LibraryOperations{
         try{
             Book book=searchBook(bookId);
             Member member=searchMember(memberId);
-            if(member==null){
-                System.out.println("Member Not Found");
-                return;
-            }else if(book.getStatus()==false){
+            if(!book.getStatus()){
                 System.out.println("Book not available");
                 return;
-            }else{
-                System.out.println("Book available");
-                book.setStatus(false);
             }
-        }catch(BookNotFoundException e){
-            System.out.println(e.getMessage());
-        }catch(MemberNotFoundException e){
+            book.setStatus(false);
+            member.borrowBook(book);
+            System.out.println("Book borrowed soccessfully");
+        }catch(BookNotFoundException |MemberNotFoundException e){
             System.out.println(e.getMessage());
         }
     }
-
     @Override
     public void returnBook(int memberId,int bookId){    
         try{
             Book book=searchBook(bookId);
             Member member=searchMember(memberId);
-            if(member==null){
-                System.out.println("Member Not Found");
-                return;
-            }else if(book.getStatus()==true){
+            if(book.getStatus()){
                 System.out.println("Book already available");
                 return;
-            }else{
-                book.setStatus(true);
-                System.out.println("Book returned Successfully");  
             }
-        }catch(BookNotFoundException e){
-            System.out.println(e.getMessage());
-        }catch(MemberNotFoundException e){
+            book.setStatus(true);
+            member.returnBook(book);
+            System.out.println("Book returned Successfully");  
+            
+        }catch(BookNotFoundException |MemberNotFoundException e){
             System.out.println(e.getMessage());
         }
     }
